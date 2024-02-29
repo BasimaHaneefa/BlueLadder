@@ -1,0 +1,139 @@
+{% extends 'Landload/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post"  enctype="multipart/form-data" id="LandloadForm" data-place-url="{% url 'webadmin:Ajax-Place' %}"
+     data-location-url="{% url 'guest:Ajax_Location' %}" >     
+     {% csrf_token %}
+        <table align="center" border="2">
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="fil_img" required=""></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" name="txt_des" id=""  autocomplete="off" placeholder="Enter Description" required=""></td>
+            </tr>
+            
+            <tr>
+                <td>Rate</td>
+                <td><input type="text" name="txt_rate" id="" autocomplete="off" placeholder="Enter Rate" required=""></td>
+            </tr>
+            <tr>
+                <tr>
+                    <td>District</td>
+                        <td><select name="sel_dis" id="sel_dis" required="">
+                            <option value="">------------select-----------</option>
+                           
+                            {% for i in DIST %}
+                            <option value="{{i.id}}">{{i}}</option>
+                            {% endfor %}
+                        </select></td>
+                           
+                </tr>
+                <tr>
+                    <td>Place</td>
+                    <td><select name="sel_plc" id="sel_plc" required="">
+                    <option value="">------------select-----------</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td><select name="sel_loc" id="sel_loc" required="">
+                        <option value="">------------select-----------</option>
+                    </select></td>
+                </tr>
+                
+                    <td colspan="2" align="center"><input type="submit" value="SAVE">
+                    <input type="reset" value="CANCEL">
+                </td>
+            </tr>
+        </table>
+        <br></br>
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>Image</td>
+                <td>Description</td>
+                <td>Rate</td>
+                <td>District</td>
+                <td>Place</td>
+                <td>Location</td>
+                <td>Action</td>
+            </tr>
+            {% for i in LAND %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="{{i.plot_image.url}}" alt="plot_img" width="120px" height="120px"></td>
+                <td>{{i.plot_des}}</td>
+                <td>{{i.plot_amount}}</td>
+                <td>{{i.location_id.place.district}}</td>
+                <td>{{i.location_id.place}}</td>
+                <td>{{i.location_id}}</td>
+                <td> <a href="{% url 'landload:Del_plot' i.id %}">Delete</a>
+                </td>
+                {% endfor%}
+                </tr>
+        </table>
+
+    </form>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script> 
+    $("#sel_dis").change(function () {
+          var did = $(this).val();
+          var ur = $("#LandloadForm").attr("data-place-url");
+          $.ajax({
+              url: ur,
+              data: { DIST: did, },
+              success: function (data) {
+                  $("#sel_plc").html(data);
+              },
+          });
+      });
+      
+    $("#sel_plc").change(function () {
+          var pid = $(this).val();
+          var ur = $("#LandloadForm").attr("data-location-url");
+          $.ajax({
+              url: ur,
+              data: { PLC: pid, },
+              success: function (data) {
+                  $("#sel_loc").html(data);
+              },
+          });
+        });
+                
+      $("#sel_loc").change(function () {
+        var lid = $(this).val();
+        var ur = $("#SearchForm").attr("data-url");
+        $.ajax({
+            url: ur,
+            data: { DIST: lid },
+            success: function (data) {
+                $("#data").html(data);
+            },
+        });
+    });
+
+    </script>
+    
+</html>
+
+
+<br><br><br><br>
+
+{% endblock content %} 

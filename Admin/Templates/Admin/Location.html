@@ -1,0 +1,94 @@
+
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <u><center><h3><b style="font-family: 'Times New Roman', Times, serif;">LOCATION</b></h3></center></u>
+    <br><br><br><br>
+    <div id="tab" align="center">
+    <form action="" method="post" id="LocationForm" data-place-url="{% url 'webadmin:Ajax-Place'%}">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                    <td>District</td>
+                    <td><select name="sel_dis" id="sel_dis" required="">
+                        <option value="">------------select-----------</option>
+                       
+                        {% for i in DS %}
+                        <option value="{{i.id}}">{{i}}</option>
+                        {% endfor %}
+                    </select></td>
+                </tr> 
+                <tr>       
+                <td>Place</td>
+                <td><select name="sel_plc" id="sel_plc" required="">
+                <option value="">------------select-----------</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td><input type="text" name="txt_loc" id="" autocomplete="off" required=""></td>
+                </tr>
+                <tr>
+                <td colspan="2" align="center"><input type="submit" value="SUBMIT">
+                    <input type="reset" value="CANCEL">
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO.</td>
+                <td>DISTRICT</td>
+                <td>PLACE</td>
+                <td>LOCATION</td>
+                <td>ACTION</td>
+            </tr>
+            {% for i in LOC %}
+            <tr>
+               <td>{{forloop.counter}}</td>
+               <td>{{i.place.district}}</td>
+               <td>{{i.place}}</td>
+               <td>{{i}}</td>
+               <td><a href="{% url 'webadmin:del_loc' i.id %}">Delete</a></td>
+               
+               
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+</body>
+    </form>
+    </div>
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_dis").change(function () {
+        var did = $(this).val();
+        var ur = $("#LocationForm").attr("data-place-url");
+        $.ajax({
+            url: ur,
+            data: { DIST: did, },
+            success: function (data) {
+                $("#sel_plc").html(data);
+            },
+        });
+    });
+    </script>
+</html>
+
+<br><br><br><br><br>
+    
+
+{% endblock content %}

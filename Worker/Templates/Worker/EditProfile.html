@@ -1,0 +1,51 @@
+{% extends 'Worker/Head.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="txt_name" id="" value="{{EDT.worker_name}}" autocomplete="off" placeholder="Enter Name" required=""></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="text" name="txt_contact" id="" value="{{EDT.worker_contact}}" autocomplete="off" placeholder="0123456789" pattern="[0-9]{10}" required="" ></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="txt_email" value="{{EDT.worker_email}}" autocomplete="off" pattern="[^ @]*@[^ @]*" placeholder="Enter Email" id="email" required="" ></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><textarea name="txt_address" id="" cols="20" rows="6" autocomplete="off" placeholder="Enter Address" required="">{{EDT.worker_address}}</textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="UPDATE">
+                <input type="reset" value="CANCEL">
+            </td>
+        </tr>
+        
+    </form>
+    </div>
+</table>
+</body>
+</html>
+
+
+
+<br><br><br><br>
+
+{% endblock content %} 

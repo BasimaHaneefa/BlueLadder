@@ -1,0 +1,47 @@
+{% extends 'Worker/Head.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+               <td>Current Password</td>
+               <td><input type="password" name="txt_pswd" id="" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></td>
+            </tr>
+            <tr>
+                <td>New password</td>
+                <td><input type="password" name="txt_npswd" id="" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                     title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></td>
+            </tr>
+            <tr>
+                <td>Confirm password</td>
+                <td><input type="password" name="txt_cpswd" placeholder="Re-enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="CHANGE">
+                    <input type="reset" value="CANCEL">
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+
+
+    <br><br><br><br>
+
+    {% endblock content %} 

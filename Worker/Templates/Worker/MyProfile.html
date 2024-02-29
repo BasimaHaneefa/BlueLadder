@@ -1,0 +1,65 @@
+{% extends 'Worker/Head.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td align="center" colspan="2"><img src="{{P.worker_photo.url}}" alt="img" width="120px" height="120px" style="border-radius:60px;">
+
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{P.worker_name}}</td>
+        </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{P.worker_contact}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{P.worker_email}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{P.worker_address}}</td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td>{{P.location_id.place.district}}</td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>{{P.location_id.place}}</td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td>{{P.location_id}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><a href="{% url 'Worker:editprofile' P.id %}">EditProfile</a> 
+                    <a href="{% url 'Worker:changepassword' P.id %}">ChangePassword</a></td> 
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+
+
+<br><br><br><br>
+
+{% endblock content %} 

@@ -1,0 +1,66 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>Date</td>
+                <td>Worker Name</td>
+                <td>Contact</td>
+                <td>District</td>
+                <td>Place</td>
+                <td>Location</td>
+                <td>worker photo </td>
+                <td>Status</td>
+                
+            </tr>
+            {% for i in BOOKINGS %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.wbookingdate }}</td>
+                <td>{{ i.worker_id.worker_name }}</td>
+                <td>{{ i.worker_id.worker_contact }}</td>
+                <td>{{ i.worker_id.location_id.place.district }}</td>
+                <td>{{ i.worker_id.location_id.place }}</td>
+                <td>{{ i.worker_id.location_id }}</td>
+                <td><img src="{{ i.worker_id.worker_photo.url }}" alt="img" width="120px" height="120px"></td>
+                <td>
+                    {% if i.w_bstatus == 1 and i.p_status == 0 %}
+                    <p><a href="{% url 'User:payworker' i.id %}">Pay Now</a></p>
+                    <p>Booking Accepted</p>
+                    {% elif i.w_bstatus == 2 %}
+                    <p>Booking Rejected!!</p>
+                    {% elif i.p_status == 1 %}
+                    <p>Payment Completed!!</p>
+                    {% else %}
+                    <p>Pending...</p>
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+
+
+<br><br><br><br>
+
+
+
+{% endblock content %} 

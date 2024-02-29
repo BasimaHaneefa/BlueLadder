@@ -1,0 +1,93 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <u><center><h3><b style="font-family: 'Times New Roman', Times, serif;">VIEW FEEDBACK</b></h3></center></u>
+    <br><br><br><br>
+    <div id="tab" align="center">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2 align="center"><b>User Feedback</b></h2>
+        <br><br><br>
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>UserName</td>
+                <td>Date</td>
+                <td>Feedback</td>
+                
+            </tr>
+            {% for i in USR %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.user_id.user_name}}</td>
+                <td>{{i.feedback_date}}</td>
+                <td>{{i.feedback_description}}</td>
+            
+            </tr>
+            {% endfor %}
+
+        </table>
+        <br><br><br>
+        <h2 align="center"><b>Worker Feedback</b></h2>
+        <br><br><br>
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>WorkerName</td>
+                <td>Date</td>
+                <td>Feedback</td>
+            
+            </tr>
+            {% for i in WRKR %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.worker_id.worker_name}}</td>
+                <td>{{i.feedback_date}}</td>
+                <td>{{i.feedback_description}}</td>
+        
+            </tr>
+            {% endfor %}
+
+        </table>
+        <br><br><br>
+        <h2 align="center"><b>Landload Feedback</b></h2>
+        <br><br><br>
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>LandloadName</td>
+                <td>Date</td>
+                <td>Feedback</td>
+            
+            </tr>
+            {% for i in LAND %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.Landload_id.landload_name}}</td>
+                <td>{{i.feedback_date}}</td>
+                <td>{{i.feedback_description}}</td>
+            
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </form>
+    </div>
+</body>
+</html>
+
+
+<br><br><br><br><br>
+    
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'Landload/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td align="center" colspan="2"><img src="{{PR.landload_photo.url}}" alt="img"width="120px" height="120px" style="border-radius:60px;">
+
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{PR.landload_name}}</td>
+        </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{PR.landload_contact}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{PR.landload_email}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{PR.landload_address}}</td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td>{{PR.location_id.place.district}}</td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>{{PR.location_id.place}}</td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td>{{PR.location_id}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><a href="{% url 'landload:editprofile' PR.id %}">EditProfile</a> 
+                    <a href="{% url 'landload:changepassword' PR.id %}">ChangePassword</a></td> 
+            </tr>
+            
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+
+
+
+<br><br><br><br>
+
+{% endblock content %} 

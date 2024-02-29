@@ -1,0 +1,44 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br>
+<div id="data">
+    <table align="center" cellpadding="50" style="border-collapse: collapse">
+        <tr>
+            {% for i in PLOT %}
+
+            <td>
+                <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+    
+                    <p><img src="{{i.plot_image.url}}" width="100px" height="100px" /></p>
+                    <br>
+                    <p>{{i.plot_des}}</p>
+                    <br>
+                    <p>{{i.plot_amount}}</p>
+                    <br>
+                    <p>{{i.location_id.place.district}}</p>
+                    <br>
+                    <p>{{i.location_id.place}}</p>
+                    <br>
+                    <p>{{i.location_id}}</p>
+                    <br>
+                    <p> <a href="{% url 'User:plotbooking' i.id %}">Plot Booking</a></p>
+                    <br>
+
+                </div>
+            </td>
+            {% if forloop.counter|divisibleby:4 %}
+        </tr>
+        <tr>
+            {% endif %}
+
+
+            {% endfor %}
+    </table>
+    <br><br><br>
+</div>
+
+
+
+
+{% endblock content %} 

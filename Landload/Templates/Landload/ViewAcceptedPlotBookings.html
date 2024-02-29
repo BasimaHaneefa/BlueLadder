@@ -1,0 +1,60 @@
+{% extends 'Landload/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>Date</td>
+                <td>User Name</td>
+                <td>Contact</td>
+                <td>District</td>
+                <td>Place</td>
+                <td>Location</td>
+                <td>Plot Image</td>
+                <td>Plot Description</td>
+                <td>Status</td>
+            </tr>
+            {% for i in Bookings %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.plotbooking_date }}</td>
+                <td>{{ i.user_id.user_name }}</td>
+                <td>{{ i.user_id.user_contact }}</td>
+                <td>{{ i.user_id.user_location.place.district }}</td>
+                <td>{{ i.user_id.user_location.place }}</td>
+                <td>{{ i.user_id.user_location }}</td>
+                <td><img src="{{ i.plot_id.plot_image.url }}" alt="img" width="120px" height="120px"></td>
+                <td>{{ i.plot_id.plot_des }}</td>
+                <td>
+                    {% if i.payment_status == 0 %}
+                    <p>Not Paid Yet!!</p>
+                    {% else %}
+                    <p>Payment Completed!!</p>
+                    {% endif %}
+                </td>
+                
+            </tr>
+            {% endfor %}
+            </table>
+    </form>
+    </div>
+</body>
+</html>
+
+
+<br><br><br><br>
+
+{% endblock content %} 

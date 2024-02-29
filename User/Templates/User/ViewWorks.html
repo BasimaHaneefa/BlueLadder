@@ -1,0 +1,42 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<div id="data">
+    <table align="center" cellpadding="50" style="border-collapse: collapse">
+        <tr>
+            {% for i in WRKR %}
+
+            <td>
+                <div style="text-align:center;border:1px solid black;margin:22px;padding:20px;width: 200px;">
+    
+                    <p><img src="{{i.work_image.url}}" width="100px" height="100px" /></p>
+                    <br>
+                    <p>{{i.work_details}}</p>
+                    <br>
+                    <p>{{i.work_amount}}</p>
+                    <br>
+                    <p>{{i.location_id.place.district}}</p>
+                    <br>
+                    <p>{{i.location_id.place}}</p>
+                    <br>
+                    <p>{{i.location_id}}</p>
+                    <br>
+                    <p><a href="{% url 'User:workbooking' i.id %}">Work Booking</a></p>
+                    
+
+                </div>
+            </td>
+            {% if forloop.counter|divisibleby:4 %}
+        </tr>
+        <tr>
+            {% endif %}
+
+
+            {% endfor %}
+    </table>
+    <br><br><br>
+</div>
+
+
+
+{% endblock content %} 

@@ -1,0 +1,40 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<br><br>
+<body>
+
+
+    
+    <center><h2><b>WELCOME {{ADMIN.admin_name}}</b></h2></center>
+
+<!-- <body>
+    <center><h2><b>WELCOME {{ADMIN.admin_name}}</b></h2></center>
+    <a href="{% url 'webadmin:workerverification' %}">WorkerVerification</a><br>
+    <a href="{% url 'webadmin:acceptworker' %}">WorkerAccept</a><br>
+    <a href="{% url 'webadmin:rejectworker' %}">WorkerReject</a><br>
+    <a href="{% url 'webadmin:landloadverification' %}">Landloadverification</a><br>
+    <a href="{% url 'webadmin:acceptland' %}">AcceptLandload</a><br>
+    <a href="{% url 'webadmin:rejectland' %}">RejectLandload</a><br>
+    <a href="{% url 'webadmin:district' %}">District</a><br>
+    <a href="{% url 'webadmin:place' %}">Place</a><br>
+    <a href="{% url 'webadmin:workertype' %}">Workertype</a><br>
+    <a href="{% url 'webadmin:Location' %}">Location</a><br>
+    <a href="{% url 'webadmin:complaints' %}">ViewFeedback</a><br>
+    <a href="{% url 'webadmin:feedback' %}">ViewComplaints</a><br>
+    <a href="{% url 'webadmin:viewuser' %}">Viewuser</a><br> -->
+
+    <img class="" src="{% static 'Admin/images/layout_img/dwadhu.jpg' %}" width="1800" height="1200" >
+
+</body>
+</html>
+
+{% endblock content %}
